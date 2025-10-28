@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestión de Profesores - Matrícula Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="d-flex min-vh-100">
+
+    <div class="text-white d-flex flex-column flex-shrink-0 p-3" style="width: 250px; background-color: #3b2fad;">
+        <h3 class="text-center mb-4 border-bottom pb-3">William Prescott</h3>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item mb-2"><a href="/inicio" class="nav-link text-white">🏠 Inicio</a></li>
+            <li class="nav-item mb-2"><a href="/alumnos" class="nav-link text-white">👨‍🎓 Alumnos</a></li>
+            <li class="nav-item mb-2"><a href="/cursos" class="nav-link text-white">📚 Cursos</a></li>
+            <li class="nav-item mb-2"><a href="/profesores" class="nav-link active text-white">👩‍🏫 Profesores</a></li>
+            <li class="nav-item mt-auto"><a href="#" class="nav-link text-white" onclick="logout()">🚪 Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex-grow-1 bg-light overflow-auto">
+        <nav class="navbar bg-white shadow-sm px-4">
+            <span class="navbar-text">
+                <h1>Gestión de Profesores</h1>
+            </span>
+        </nav>
+
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">Lista de Profesores</h2>
+                <form th:action="@{/profesores/buscar}" method="get" class="d-flex me-2">
+                    <input type="text" name="query" class="form-control" placeholder="Buscar por nombre o apellido">
+                    <button type="submit" class="btn btn-secondary ms-2">Buscar</button>
+                </form>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profesorModal">Agregar
+                    Profesor</button>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Teléfono</th>
+                        <th>Edad</th>
+                        <th>Distrito</th>
+                        <th>Ciudad</th>
+                        <th>Correo</th>
+                        <th>RUC/DNI</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${profesores}">
+                        <td th:text="${p.nombre}"></td>
+                        <td th:text="${p.apellido}"></td>
+                        <td th:text="${p.telefono}"></td>
+                        <td th:text="${p.edad}"></td>
+                        <td th:text="${p.distrito}"></td>
+                        <td th:text="${p.ciudad}"></td>
+                        <td th:text="${p.correo}"></td>
+                        <td th:text="${p.rucDni}"></td>
+                        <td>
+                            <button class="btn btn-warning btn-sm"
+                                th:onclick="'editarProfesor(' + ${p.id} + ')'">Editar</button>
+                            <a th:href="@{'/profesores/eliminar/' + ${p.id}}" class="btn btn-danger btn-sm"
+                                onclick="return confirm('¿Eliminar profesor?')">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="profesorModal" tabindex="-1" aria-labelledby="profesorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form th:action="@{/profesores/guardar}" th:object="${profesor}" method="post">
+                    <input type="hidden" id="profesorId" th:field="*{id}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profesorModalLabel">Agregar Profesor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-2">
+                            <div class="col-md-6"><input type="text" id="profesorNombre" name="nombre"
+                                    placeholder="Nombre" class="form-control" required></div>
+                            <div class="col-md-6"><input type="text" id="profesorApellido" name="apellido"
+                                    placeholder="Apellido" class="form-control" required></div>
+                            <div class="col-md-4"><input type="text" id="profesorTelefono" name="telefono"
+                                    placeholder="Teléfono" class="form-control"></div>
+                            <div class="col-md-2"><input type="number" id="profesorEdad" name="edad" placeholder="Edad"
+                                    class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="profesorDistrito" name="distrito"
+                                    placeholder="Distrito" class="form-control"></div>
+                            <div class="col-md-3"><input type="text" id="profesorCiudad" name="ciudad"
+                                    placeholder="Ciudad" class="form-control"></div>
+                            <div class="col-md-6"><input type="email" id="profesorCorreo" name="correo"
+                                    placeholder="Correo" class="form-control"></div>
+                            <div class="col-md-6"><input type="text" id="profesorRucDni" name="rucDni"
+                                    placeholder="RUC/DNI" class="form-control"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Profesor</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function logout() { window.location.href = "/login"; }
+
+        function editarProfesor(id) {
+            fetch(`/profesores/json/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('profesorModalLabel').innerText = 'Editar Profesor';
+                    document.getElementById('profesorId').value = data.id;
+                    document.getElementById('profesorNombre').value = data.nombre;
+                    document.getElementById('profesorApellido').value = data.apellido;
+                    document.getElementById('profesorTelefono').value = data.telefono;
+                    document.getElementById('profesorEdad').value = data.edad;
+                    document.getElementById('profesorDistrito').value = data.distrito;
+                    document.getElementById('profesorCiudad').value = data.ciudad;
+                    document.getElementById('profesorCorreo').value = data.correo;
+                    document.getElementById('profesorRucDni').value = data.rucDni;
+
+                    var myModal = new bootstrap.Modal(document.getElementById('profesorModal'));
+                    myModal.show();
+                });
+        }
+    </script>
+</body>
+
+</html>
