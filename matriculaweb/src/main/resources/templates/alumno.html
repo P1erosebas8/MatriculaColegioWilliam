@@ -37,8 +37,7 @@
                     <button type="submit" class="btn btn-secondary ms-2">Buscar</button>
                 </form>
 
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#alumnoModal"
-                    onclick="abrirModal()">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#alumnoModal">
                     Agregar Alumno
                 </button>
             </div>
@@ -113,12 +112,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function logout() { window.location.href = "/login"; }
-
-        function abrirModal() {
-            document.getElementById('formAlumno').reset();
-            document.getElementById('alumnoModalLabel').innerText = 'Agregar Alumno';
-            document.getElementById('alumnoId').value = '';
-        }
 
         function editarAlumno(id) {
             fetch(`/alumnos/json/${id}`)

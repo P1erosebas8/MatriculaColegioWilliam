@@ -23,7 +23,7 @@ public class CursoController {
     public String listar(Model model) {
         model.addAttribute("cursos", repo.findAll());
         model.addAttribute("curso", new Curso());
-        return "curso"; // nombre de la plantilla HTML
+        return "curso";
     }
 
     @PostMapping("/guardar")
