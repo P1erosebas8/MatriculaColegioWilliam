@@ -16,6 +16,7 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
+        //asd
     }
 
     @Bean
