@@ -14,7 +14,7 @@ public class UsuarioService {
     private UsuarioRepository repo;
 
     public Optional<Usuario> buscarPorUsuario(String usuario) {
-        return Optional.ofNullable(repo.findByUsuario(usuario));
+        return Optional.empty();
     }
 
     public void guardar(Usuario usuario) {
