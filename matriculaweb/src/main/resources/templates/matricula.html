@@ -50,10 +50,10 @@
 
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Cursos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Historial</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/alumno/matricula}">Matricula</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/alumno/cursosA}">Cursos</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/alumno/profesoresA}">Profesores</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/alumno/perfilA}">Perfil</a></li>
                     <li class="nav-item">
                         <a class="btn btn-light btn-sm ms-2" th:href="@{/login}">Cerrar sesión</a>
                     </li>
@@ -76,7 +76,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">📚 Cursos disponibles</h5>
                         <p class="card-text text-muted">Consulta los cursos en los que puedes matricularte.</p>
-                        <a href="#" class="btn btn-primary">Ver cursos</a>
+                        <a th:href="@{/alumno/cursos}" class="btn btn-primary">Ver cursos</a>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">🧾 Historial académico</h5>
                         <p class="card-text text-muted">Revisa tus matrículas anteriores y calificaciones.</p>
-                        <a href="#" class="btn btn-success">Ver historial</a>
+                        <a th:href="@{/alumno/matricula}" class="btn btn-success">Ver historial</a>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">👤 Mi perfil</h5>
                         <p class="card-text text-muted">Edita tus datos personales y credenciales.</p>
-                        <a href="#" class="btn btn-warning text-white">Editar perfil</a>
+                        <a th:href="@{/alumno/perfil}" class="btn btn-warning text-white">Editar perfil</a>
                     </div>
                 </div>
             </div>

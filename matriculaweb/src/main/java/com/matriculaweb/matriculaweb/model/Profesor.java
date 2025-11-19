@@ -18,6 +18,7 @@ public class Profesor {
     private String ciudad;
     private String correo;
     private String rucDni;
+    private String especialidad;
 
     public Profesor() {
     }
@@ -92,5 +93,13 @@ public class Profesor {
 
     public void setRucDni(String rucDni) {
         this.rucDni = rucDni;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
     }
 }
