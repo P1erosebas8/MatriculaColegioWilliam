@@ -16,7 +16,6 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
-        //asd
     }
 
     @Bean
@@ -35,10 +34,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .authenticationProvider(authenticationProvider())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/inicio", "/inicio/**").hasRole("ADMIN")
-                        .requestMatchers("/principal", "/principal/**").hasRole("ALUMNO")
-                        .requestMatchers("/redirect", "/login", "/css/**", "/js/**","/img/**").permitAll()
+                        .requestMatchers("/matricula", "/matricula/**").hasRole("ALUMNO")
+                        .requestMatchers("/redirect", "/", "/principal", "/login", "/css/**", "/js/**", "/img/**",
+                                "/assets/**")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")

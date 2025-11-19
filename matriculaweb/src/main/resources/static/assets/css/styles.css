@@ -1,0 +1,132 @@
+header {
+  top: 0;
+  position: sticky;
+  box-shadow: 0px 0px 5px 0px black;
+  z-index: 9999;
+  background-color: white;
+  width: 100%;
+}
+.header-items {
+  max-width: 1200px;
+}
+.card-group {
+  gap: 10px;
+}
+.card img {
+  padding: 20px;
+}
+.container-carrusel {
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.container-cards {
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+#inicial {
+  background-color: #ffc101;
+}
+#primaria {
+  background-color: #abcc53;
+}
+#secundaria{
+  background-color: #1bb9fe;
+}
+.modal {
+  z-index: 105000; 
+}
+
+.modal-backdrop {
+  z-index: 104000;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+.reservar {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: #f03c63;
+}
+.reservar-content {
+  max-width: 1200px;
+  margin: auto;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+}
+.left-content {
+  h2 {
+    color: black;
+    font-weight: bold;
+  }
+  p {
+    color: white;
+  }
+}
+.rigth-content {
+  a {
+    padding: 15px 25px;
+    background-color: #3083ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: 1.3em;
+  }
+}
+.educacion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.edu{
+    border: 0px!important;
+}
+.content-edu{
+    max-width: 900px;
+      margin: auto;
+}
+.siguenos{
+    width: 350px!important;
+    & img{
+        width: 100%;
+    }
+}
+footer{
+    justify-content: center;
+    background-color: #e7b214;
+    margin-top: auto;
+    font-weight: bold;
+}
+
+#modalCursosInicial .modal-header {
+    background-color: #ffc101;
+    color: #333;
+}
+
+#modalCursosPrimaria .modal-header {
+    background-color: #abcc53;
+    color: #333;
+}
+
+#modalCursosSecundaria .modal-header {
+    background-color: #1bb9fe;
+    color: white;
+}
+
+.modal-header .modal-title {
+    font-weight: bold;
+}
+#modalCursosInicial .modal-header .btn-close,
+#modalCursosPrimaria .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}

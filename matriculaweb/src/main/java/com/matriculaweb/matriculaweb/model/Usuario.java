@@ -12,7 +12,7 @@ public class Usuario {
 
     private String usuario;
     private String clave;
-
+    private String nombre;
     private String rol;
 
     public Long getId() {
@@ -37,6 +37,14 @@ public class Usuario {
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getRol() {

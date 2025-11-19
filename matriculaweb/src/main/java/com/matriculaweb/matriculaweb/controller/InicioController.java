@@ -10,7 +10,7 @@ public class InicioController {
 
 @GetMapping("/inicio")
 public String inicio(Model model, Authentication auth) {
-    model.addAttribute("usuario", auth.getName()); // nombre del usuario autenticado
+    model.addAttribute("usuario", auth.getName());
     return "inicio";
 }
 

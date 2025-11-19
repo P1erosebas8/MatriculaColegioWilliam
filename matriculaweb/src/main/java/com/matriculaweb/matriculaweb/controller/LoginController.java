@@ -26,7 +26,7 @@ public class LoginController {
             if (rol.equals("ROLE_ADMIN")) {
                 return "redirect:/inicio";
             } else if (rol.equals("ROLE_ALUMNO")) {
-                return "redirect:/principal";
+                return "redirect:/matricula";
             }
         }
 
