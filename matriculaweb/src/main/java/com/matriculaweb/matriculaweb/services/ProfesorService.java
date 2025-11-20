@@ -18,6 +18,10 @@ public class ProfesorService {
         return repo.findAll();
     }
 
+    public List<Profesor> findActivos() {
+        return repo.findByActivoTrue();
+    }
+
     public void guardar(Profesor profesor) {
         repo.save(profesor);
     }

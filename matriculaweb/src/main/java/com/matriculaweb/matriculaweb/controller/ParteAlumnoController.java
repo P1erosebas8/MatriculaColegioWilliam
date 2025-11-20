@@ -2,10 +2,9 @@ package com.matriculaweb.matriculaweb.controller;
 
 import com.matriculaweb.matriculaweb.model.Alumno;
 import com.matriculaweb.matriculaweb.repository.AlumnoRepository;
-import com.matriculaweb.matriculaweb.repository.CursoRepository;
-import com.matriculaweb.matriculaweb.repository.MatriculaRepository;
-import com.matriculaweb.matriculaweb.repository.ProfesorRepository;
-import com.matriculaweb.matriculaweb.repository.SeccionRepository;
+import com.matriculaweb.matriculaweb.services.CursoService;
+import com.matriculaweb.matriculaweb.services.ProfesorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -19,33 +18,25 @@ public class ParteAlumnoController {
     @Autowired
     private AlumnoRepository alumnoRepository;
 
-    @Autowired
-    private CursoRepository cursoRepository;
 
     @Autowired
-    private ProfesorRepository profesorRepository;
+    private CursoService cursoService;
 
-    @GetMapping("/matricula")
-    public String matricula(Model model, Authentication auth) {
-        model.addAttribute("username", auth.getName());
-        return "matricula";
-    }
+    @Autowired
+    private ProfesorService profesorService;
 
-    // LISTA DE CURSOS
     @GetMapping("/cursosA")
     public String cursos(Model model) {
-        model.addAttribute("cursos", cursoRepository.findAll());
+        model.addAttribute("cursos", cursoService.findActivos());
         return "cursosA";
     }
 
-    // LISTA DE PROFESORES
     @GetMapping("/profesoresA")
     public String profesores(Model model) {
-        model.addAttribute("profesores", profesorRepository.findAll());
+        model.addAttribute("profesores", profesorService.findActivos());
         return "profesoresA";
     }
 
-    // PERFIL DEL ALUMNO
     @GetMapping("/perfilA")
     public String perfil(Model model, Authentication auth) {
         String correo = auth.getName();
@@ -55,7 +46,6 @@ public class ParteAlumnoController {
         return "perfilA";
     }
 
-    // ACTUALIZAR PERFIL
     @PostMapping("/actualizarPerfil")
     public String actualizarPerfil(@ModelAttribute Alumno alumnoForm,
             Authentication auth) {
@@ -64,18 +54,13 @@ public class ParteAlumnoController {
         Alumno alumnoBD = alumnoRepository.findByCorreo(correo).orElse(null);
 
         if (alumnoBD == null)
-            return "redirect:/alumno/perfil?error";
+            return "redirect:/alumno/perfilA?error";
 
-        // Aseguramos que se actualiza el mismo registro
-        alumnoForm.setId(alumnoBD.getId());
-
-        // Copiar los datos del formulario
         alumnoBD.setNombres(alumnoForm.getNombres());
         alumnoBD.setApellidos(alumnoForm.getApellidos());
 
         alumnoRepository.save(alumnoBD);
 
-        return "redirect:/alumno/matricula?success";
+        return "redirect:/alumno/perfilA?success";
     }
-
 }

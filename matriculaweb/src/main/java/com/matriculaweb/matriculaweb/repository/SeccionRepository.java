@@ -8,4 +8,6 @@ import com.matriculaweb.matriculaweb.model.Seccion;
 
 public interface SeccionRepository extends JpaRepository<Seccion, Long> {
     List<Seccion> findByCursoId(Long cursoId);
+
+    List<Seccion> findByActivoTrue();
 }

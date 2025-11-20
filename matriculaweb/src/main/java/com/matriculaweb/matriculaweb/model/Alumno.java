@@ -21,6 +21,9 @@ public class Alumno {
     private String distrito;
     private String dni;
 
+    @Column(nullable = false)
+    private boolean activo = true;
+
     public Alumno() {
     }
 
@@ -102,5 +105,13 @@ public class Alumno {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+    
+    public boolean isActivo() {
+        return activo;
+    }
+    
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

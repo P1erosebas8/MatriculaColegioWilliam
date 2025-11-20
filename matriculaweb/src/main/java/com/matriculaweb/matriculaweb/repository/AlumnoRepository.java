@@ -2,6 +2,7 @@ package com.matriculaweb.matriculaweb.repository;
 
 import com.matriculaweb.matriculaweb.model.Alumno;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
 
     Optional<Alumno> findByCorreo(String correo);
 
+    @Query("SELECT a.id FROM Alumno a WHERE a.correo = :correo")
+    Long findAlumnoIdByUsername(String correo);
 }

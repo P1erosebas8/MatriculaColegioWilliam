@@ -2,6 +2,7 @@ package com.matriculaweb.matriculaweb.controller;
 
 import com.matriculaweb.matriculaweb.model.Curso;
 import com.matriculaweb.matriculaweb.repository.CursoRepository;
+import com.matriculaweb.matriculaweb.services.CursoService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,11 @@ import java.util.List;
 public class CursoController {
 
     private final CursoRepository repo;
+    private final CursoService cursoService;
 
-    public CursoController(CursoRepository repo) {
+    public CursoController(CursoRepository repo, CursoService cursoService) {
         this.repo = repo;
+        this.cursoService = cursoService;
     }
 
     @GetMapping
@@ -51,4 +54,29 @@ public class CursoController {
         model.addAttribute("curso", new Curso());
         return "curso";
     }
+
+    @PostMapping("/deshabilitar/{id}")
+    public String deshabilitar(@PathVariable Long id) {
+        Curso curso = cursoService.buscarPorId(id).orElse(null);
+
+        if (curso != null) {
+            curso.setActivo(false);
+            cursoService.guardar(curso);
+        }
+
+        return "redirect:/cursos";
+    }
+
+    @PostMapping("/habilitar/{id}")
+    public String habilitar(@PathVariable Long id) {
+        Curso curso = cursoService.buscarPorId(id).orElse(null);
+
+        if (curso != null) {
+            curso.setActivo(true);
+            cursoService.guardar(curso);
+        }
+
+        return "redirect:/cursos";
+    }
+
 }

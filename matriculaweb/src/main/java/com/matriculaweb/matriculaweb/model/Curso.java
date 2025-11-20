@@ -16,6 +16,9 @@ public class Curso {
     private int horasSemanales;
     private double notaMinima;
 
+    @Column(nullable = false)
+    private boolean activo = true;
+
     public Curso() {
     }
 
@@ -57,5 +60,12 @@ public class Curso {
 
     public void setNotaMinima(double notaMinima) {
         this.notaMinima = notaMinima;
+    }
+        public boolean isActivo() {
+        return activo;
+    }
+    
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

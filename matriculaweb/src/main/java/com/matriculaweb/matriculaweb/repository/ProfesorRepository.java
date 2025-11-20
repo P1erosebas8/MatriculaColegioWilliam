@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
     List<Profesor> findByNombreContainingIgnoreCaseOrApellidoContainingIgnoreCase(String nombre, String apellido);
+
+    List<Profesor> findByActivoTrue();
+
 }

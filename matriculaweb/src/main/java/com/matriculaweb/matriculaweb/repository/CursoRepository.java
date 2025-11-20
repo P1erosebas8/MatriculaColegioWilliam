@@ -7,4 +7,7 @@ import com.matriculaweb.matriculaweb.model.Curso;
 
 public interface CursoRepository extends JpaRepository<Curso, Long> {
     List<Curso> findByNombreContainingIgnoreCaseOrDescripcionContaining(String nombre, String descripcion);
+
+    List<Curso> findByActivoTrue();
+
 }

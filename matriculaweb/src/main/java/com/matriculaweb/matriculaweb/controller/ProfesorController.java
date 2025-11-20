@@ -2,6 +2,8 @@ package com.matriculaweb.matriculaweb.controller;
 
 import com.matriculaweb.matriculaweb.model.Profesor;
 import com.matriculaweb.matriculaweb.repository.ProfesorRepository;
+import com.matriculaweb.matriculaweb.services.ProfesorService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +15,11 @@ import java.util.List;
 public class ProfesorController {
 
     private final ProfesorRepository repo;
+    private final ProfesorService profesorService;
 
-    public ProfesorController(ProfesorRepository repo) {
+    public ProfesorController(ProfesorRepository repo, ProfesorService profesorService) {
         this.repo = repo;
+        this.profesorService = profesorService;
     }
 
     @GetMapping
@@ -49,5 +53,29 @@ public class ProfesorController {
         model.addAttribute("profesores", resultados);
         model.addAttribute("profesor", new Profesor());
         return "profesor";
+    }
+
+    @PostMapping("/deshabilitar/{id}")
+    public String deshabilitar(@PathVariable Long id) {
+        Profesor profesor = profesorService.buscarPorId(id).orElse(null);
+
+        if (profesor != null) {
+            profesor.setActivo(false);
+            profesorService.guardar(profesor);
+        }
+
+        return "redirect:/profesores";
+    }
+
+    @PostMapping("/habilitar/{id}")
+    public String habilitar(@PathVariable Long id) {
+        Profesor profesor = profesorService.buscarPorId(id).orElse(null);
+
+        if (profesor != null) {
+            profesor.setActivo(true);
+            profesorService.guardar(profesor);
+        }
+
+        return "redirect:/profesores";
     }
 }

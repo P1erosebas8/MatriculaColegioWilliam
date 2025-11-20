@@ -16,7 +16,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    private final List<String> ROLES = List.of("ADMIN", "SECRETARIA", "ALUMNO");
+    private final List<String> ROLES = List.of("ADMIN", "DOCENTE", "ALUMNO");
 
     @GetMapping
     public String listarUsuarios(Model model) {

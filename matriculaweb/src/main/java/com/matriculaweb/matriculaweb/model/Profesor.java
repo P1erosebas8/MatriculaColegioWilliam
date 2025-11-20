@@ -20,6 +20,9 @@ public class Profesor {
     private String rucDni;
     private String especialidad;
 
+    @Column(nullable = false)
+    private boolean activo = true;
+
     public Profesor() {
     }
 
@@ -101,5 +104,13 @@ public class Profesor {
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

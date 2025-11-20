@@ -7,7 +7,7 @@
     <title>William Prescott</title>
 
     <link th:href="@{/assets/css/styles.css}" rel="stylesheet">
-    <link rel="shortcut icon" th:href="@{/assets/img/logo3.png}" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{/assets/img/prescot.png}" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -16,15 +16,16 @@
 <body>
     <header class="p-3 text-white">
         <div class="container">
-            <div class="header-items d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <div
+                class="header-items d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
                 <a th:href="@{/}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img class="d-flex align-items-center" th:src="@{/assets/img/prescot.png}" alt="logo" style="width: 70px; height: 80px;">
+                    <img class="d-flex align-items-center" th:src="@{/assets/img/prescot.png}" alt="logo"
+                        style="width: 70px; height: 80px;">
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="/" class="nav-link px-2 text-dark">Inicio</a></li>
-                    <li><a href="#" class="nav-link px-2 text-dark">Nosotros</a></li>
+                    <li><a class="nav-link px-2 text-dark ps-3 fs-5">William Prescott</a></li>
                 </ul>
                 <div class="text-end">
                     <a th:href="@{/login}" class="btn btn-warning">Intranet</a>
@@ -33,13 +34,13 @@
         </div>
     </header>
 
-    <main >
+    <main>
 
         <section class="container-carrusel">
             <div id="carouselExampleIndicators" class="carousel slide">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                        aria-current="true"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
                 </div>
@@ -107,7 +108,7 @@
                     <p>Solicita una cita por videoconferencia o reserva una cita presencial</p>
                 </div>
                 <div class="rigth-content">
-                    <a href="#">Reservar Cita</a>
+                    <a href="https://api.whatsapp.com" target="_blank">Reservar Cita</a>
                 </div>
             </div>
         </section>
@@ -121,7 +122,8 @@
                     <img th:src="@{/assets/img/pluri.png}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Colegio Pluricultural</h5>
-                        <p class="card-text">Somos una escuela multicultural con un programa de formación reconocido.</p>
+                        <p class="card-text">Somos una escuela multicultural con un programa de formación reconocido.
+                        </p>
                     </div>
                 </div>
 
@@ -154,31 +156,29 @@
 
     </main>
 
-    <div class="container-fluid">
-        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
-            <div class="col mb-3">
-                <a th:href="@{/}" class="d-flex align-items-center mb-3 text-decoration-none">
-                    <img th:src="@{/assets/img/prescot.png}" alt="" style="width: 100px">
-                </a>
-                <p class="text-body-secondary">© 2025 William Prescott, Inc. Todos los derechos reservados.</p>
-            </div>
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 border-top">
+        <div class="col mb-3">
+            <a th:href="@{/}" class="d-flex align-items-center mb-3 text-decoration-none">
+                <img th:src="@{/assets/img/prescot.png}" alt="" style="width: 100px">
+            </a>
+            <p class="text-white">© 2025 William Prescott, Inc. Todos los derechos reservados.</p>
+        </div>
 
-            <div class="col mb-3">
-                <h5>Nosotros</h5>
-                <p>Somos una institución educativa comprometida con la excelencia académica y humana.</p>
-            </div>
+        <div class="col mb-3">
+            <h5>Nosotros</h5>
+            <p>Somos una institución educativa comprometida con la excelencia académica y humana.</p>
+        </div>
 
-            <div class="col mb-3">
-                <h5>Informes</h5>
-                <p>(01) 1123456 / 987654321 <br> informes@school.pe <br> Jr. Cesar Vallejo 123 – Los Olivos</p>
-            </div>
+        <div class="col mb-3">
+            <h5>Informes</h5>
+            <p>(01) 1123456 / 987654321 <br> informes@school.pe <br> Jr. Cesar Vallejo 123 – Los Olivos</p>
+        </div>
 
-            <div class="col mb-3 siguenos">
-                <h5>Síguenos</h5>
-                <img th:src="@{/assets/img/siguenos.png}" alt="">
-            </div>
-        </footer>
-    </div>
+        <div class="col mb-3 siguenos">
+            <h5>Síguenos</h5>
+            <img th:src="@{/assets/img/siguenos.png}" alt="">
+        </div>
+    </footer>
 
     <div class="modal fade" id="modalCursosInicial" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">

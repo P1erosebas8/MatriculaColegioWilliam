@@ -18,6 +18,10 @@ public class CursoService {
         return repo.findAll();
     }
 
+    public List<Curso> findActivos() {
+        return repo.findByActivoTrue();
+    }
+
     public void guardar(Curso curso) {
         repo.save(curso);
     }

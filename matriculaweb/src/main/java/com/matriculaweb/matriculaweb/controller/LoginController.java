@@ -7,15 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.matriculaweb.matriculaweb.repository.AlumnoRepository;
-import com.matriculaweb.matriculaweb.repository.UsuarioRepository;
-
 @Controller
 public class LoginController {
     @Autowired
     private AlumnoRepository alumnoRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
 
     @GetMapping("/login")
     public String login() {
