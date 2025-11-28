@@ -42,7 +42,8 @@
             <a class="navbar-brand text-white fw-bold" href="#">Matrícula William Prescott</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-white" th:href="@{/alumno/miHorario}">Horario</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" th:href="@{/alumno/miHorario}">Horario</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link text-white" th:href="@{/alumno/matricula}">Matricula</a>
                     </li>
                     <li class="nav-item"><a class="nav-link text-white" th:href="@{/alumno/cursosA}">Cursos</a></li>
@@ -59,11 +60,15 @@
 
     <div class="container mt-4">
 
-        <h2 class="text-center mb-4">Mis Matrículas</h2>
-
+        <h2 class="text-start mb-4">Mi Horario</h2>
+        <div class="d-flex justify-content-end mb-3">
+            <a class="btn btn-success" th:href="@{/alumno/descargarHorarioPdf}">
+                Descargar PDF
+            </a>
+        </div>
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
-                <h5 class="m-0">Cursos matriculados</h5>
+                <h5 class="m-0">Horaio semanal</h5>
             </div>
 
             <div class="card-body p-0">
@@ -73,18 +78,20 @@
                             <th>Curso</th>
                             <th>Profesor</th>
                             <th>Horario</th>
+                            <th>Horas Semanales</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="m : ${matriculas}">
                             <td th:text="${m.seccion.curso.nombre}"></td>
-                            <td th:text="${m.seccion.profesor.nombre}"></td>
+                            <td th:text="${m.seccion.profesor.nombre} + ' ' + ${m.seccion.profesor.apellido}"></td>
                             <td th:text="${m.seccion.horario}"></td>
+                            <td th:text="${m.seccion.curso.horasSemanales} + ' hrs'"></td>
                         </tr>
 
                         <tr th:if="${matriculas.size() == 0}">
                             <td colspan="3" class="text-center text-muted py-3">
-                                No tienes matrículas registradas.
+                                No estas matriculado en ningun curso.
                             </td>
                         </tr>
                     </tbody>

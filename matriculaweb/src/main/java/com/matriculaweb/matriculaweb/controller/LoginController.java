@@ -39,7 +39,7 @@ public class LoginController {
                 }
 
                 System.out.println(">>> Alumno con perfil, redirigiendo a panel alumno");
-                return "redirect:/alumno/matricula";
+                return "redirect:/alumno/miHorario";
             }
         }
 
