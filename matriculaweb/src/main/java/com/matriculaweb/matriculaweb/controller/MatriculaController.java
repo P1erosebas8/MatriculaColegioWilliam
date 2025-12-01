@@ -135,20 +135,17 @@ public class MatriculaController {
 
         document.open();
 
-        // Título
         Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK);
         Paragraph title = new Paragraph("Horario del Alumno", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         title.setSpacingAfter(20);
         document.add(title);
 
-        // Tabla
         PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10);
         table.setSpacingAfter(10);
 
-        // Encabezados
         Stream.of("Curso", "Profesor", "Horario", "Horas Semanales")
                 .forEach(col -> {
                     PdfPCell header = new PdfPCell(new Phrase(col));
@@ -158,7 +155,6 @@ public class MatriculaController {
                     table.addCell(header);
                 });
 
-        // Filas con datos
         for (var m : matriculas) {
             table.addCell(m.getSeccion().getCurso().getNombre());
             table.addCell(m.getSeccion().getProfesor().getNombre() + " "
